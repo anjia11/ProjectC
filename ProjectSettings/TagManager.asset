@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - EnemyMeledak
+  - Meledak
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - Enemy
+  - Elev
+  - Player
+  - Destroyable
+  - Batas
+  - Item
+  - DropItem
+  - EnemyHitBox
+  - PlayerHitBox
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 337711737
+    locked: 0
+  - name: Near Background
+    uniqueID: 289677865
+    locked: 0
+  - name: Castle
+    uniqueID: 2763212319
+    locked: 0
+  - name: Exterior
+    uniqueID: 2473603079
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Item
+    uniqueID: 1919839645
+    locked: 0
+  - name: Decoratif
+    uniqueID: 71680135
+    locked: 0
+  - name: Foreground
+    uniqueID: 2637972235
+    locked: 0
+  - name: Near Foreground
+    uniqueID: 1906155315
+    locked: 0
