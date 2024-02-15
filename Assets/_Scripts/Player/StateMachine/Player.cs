@@ -148,4 +148,24 @@ public class Player : Entity
     }
 
     #endregion
+    
+    public bool cutscene = false;
+    public IEnumerator WalkIntoNewScene(Vector2 exitDirection, float delay)
+    {
+        if (exitDirection.y > 0)
+        {
+            SetVelocityY(exitDirection.y * playerData.jumpForcce);
+            SetVelocityX(exitDirection.x *2* playerData.moveVelocity);
+        }
+        
+        if (exitDirection.x != 0)
+        {
+            //SetVelocityX(exitDirection.x * playerData.moveVelocity);
+        }
+        //Flip
+        CheckFlip((int)exitDirection.x);
+        yield return new WaitForSeconds(delay);
+        cutscene = false;
+    }
+
 }

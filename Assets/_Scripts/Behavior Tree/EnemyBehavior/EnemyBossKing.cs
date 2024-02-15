@@ -4,8 +4,12 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
 {
     public class EnemyBossKing : EnemyBT
     {
+        [Header("Trigger")]
+        [SerializeField] private GameObject endGameTriggerPrefab;
+        private GameObject tempatTrigger;
+        
+        [Header("Variabel BT")]
         [SerializeField] float blinkDistance = 2f;
-        [SerializeField] float blinkSpeed = 20f;
         [SerializeField] private Transform posKanan;
         [SerializeField] private Transform posKiri;
 
@@ -16,10 +20,7 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
         [SerializeField] private GameObject smokeVFXPrefab;
         [SerializeField] private Transform[] smokeSpawnTransform;
         [SerializeField] private Transform[] petirWavePos;
-
-        // [SerializeField] private Transform shockWavePoint;
-        // [SerializeField] private float radiusWave;
-        // [SerializeField] private float waveForce;
+        
         [SerializeField] private GameObject dashFX;
         [SerializeField] private Transform dashPos;
         
@@ -30,6 +31,7 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
         protected override void Awake()
         {
             base.Awake();
+            tempatTrigger = GameObject.FindGameObjectWithTag("Trigger");
         }
 
         protected override void Start()
@@ -114,8 +116,7 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
             Leaf zeroGravity = new Leaf("Tahan", ZeroGravity);
             Leaf cooldown = new Leaf("Cooldown", Cooldown);
             Leaf petirWave = new Leaf("Petir Wave", PetirWave);
-            //Leaf shockWave = new Leaf("ShockWave", Shockwave);
-            
+
             airAttack.AddChild(cooldown);
             airAttack.AddChild(facePlayer);
             airAttack.AddChild(dashStance);
@@ -137,6 +138,7 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
             rangeSequence.AddChild(invertCheckDistance);
             rangeSequence.AddChild(randomRangeAttackSelector);
             
+            //Random Melee Attack
             randomMeleeSelectorBoss.AddChild(comboMeleeAttack);
             randomMeleeSelectorBoss.AddChild(dashAttackSequence);
             
@@ -186,6 +188,9 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
         {
             base.Die();
             Anim.Play("Mati");
+            GameObject o = Instantiate(endGameTriggerPrefab, endGameTriggerPrefab.transform.position,
+                Quaternion.identity);
+            o.transform.SetParent(tempatTrigger.transform);
             SetVelocity(0, rb2D.velocity.y);
             Destroy(transform.parent.gameObject, 3f);
         }
@@ -231,19 +236,18 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
             return NodeStatus.Success;
         }
 
-        void BlinkTowardsPlayer()
-        {
-            Vector2 direction = (PlayerManager.instance._player.transform.position - transform.position).normalized;
-            //Debug.Log("Direction == " + direction);
-            // Implementasikan blink ke arah pemain
-
-            StartBlink();
-        }
+        // void BlinkTowardsPlayer()
+        // {
+        //     Vector2 direction = (PlayerManager.instance._player.transform.position - transform.position).normalized;
+        //     //Debug.Log("Direction == " + direction);
+        //     // Implementasikan blink ke arah pemain
+        //
+        //     StartBlink();
+        // }
 
         void StartBlink()
         {
-            float step = blinkSpeed * Time.fixedDeltaTime;
-            Vector2 newPosition = new Vector2(transform.position.x + facingDirection * blinkDistance * step,
+            Vector2 newPosition = new Vector2(transform.position.x + facingDirection * blinkDistance,
                 transform.position.y);
 
             if (CheckTouchingWall())
@@ -373,19 +377,5 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
             }
             return NodeStatus.Success;
         }
-
-        // NodeStatus Shockwave()
-        // {
-        //     Collider2D[] col = Physics2D.OverlapCircleAll(shockWavePoint.position, radiusWave, hitable);
-        //     foreach (var c in col)
-        //     {
-        //         Vector2 direction = c.transform.position - transform.position;
-        //         c.GetComponent<Rigidbody2D>().AddForce(direction * waveForce);
-        //     }
-        //
-        //     return NodeStatus.Success;
-        // }
-        
-
     }
 }

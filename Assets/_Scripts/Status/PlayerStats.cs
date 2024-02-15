@@ -29,8 +29,8 @@ public class PlayerStats : CharacterStats
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (currentHealth >= 0)
-            _player.DamageFX();
+        // if (currentHealth >= 0)
+        //     _player.DamageFX();
     }
 
     protected override void Die()

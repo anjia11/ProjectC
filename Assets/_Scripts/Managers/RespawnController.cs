@@ -40,7 +40,7 @@ public class RespawnController : MonoBehaviour
         UIController.instance.StartfadeToBlack();
         player.SetActive(false);
         yield return new WaitForSeconds(waitToRespawn);
-        GameManager.instance.RestartGame();
+        GameManager.Instance.RestartGame();
         UIController.instance.StartFadeFromBlack();
         player.transform.position = respawnPoint;
         player.SetActive(true);

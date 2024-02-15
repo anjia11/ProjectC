@@ -63,7 +63,7 @@ namespace _Scripts.Entities
 
         protected virtual void Update()
         {
-        
+            if (GameManager.Instance.gamePaused) return;
         }
     
         #region Set Velocity Function
@@ -169,19 +169,19 @@ namespace _Scripts.Entities
             transform.Rotate(0f, 180f, 0f);
         }
 
-        public void DamageFX()
+        public void DamageFX(int dir)
         {
             if (gameObject.activeSelf)
             {
                 entityFX.StartCoroutine("KedipFX");
-                StartCoroutine(KnockBack());
+                StartCoroutine(KnockBack(dir));
             }
         }
 
-        public IEnumerator KnockBack()
+        public IEnumerator KnockBack(int dir)
         {
             isKnocked = true;
-            rb2D.velocity = new Vector2(knockBackDirection.x * -facingDirection, knockBackDirection.y);
+            rb2D.velocity = new Vector2(knockBackDirection.x * dir, knockBackDirection.y);
 
             yield return new WaitForSeconds(duration);
             SetZeroVelocityc();

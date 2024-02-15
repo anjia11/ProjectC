@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - EnemyMeledak
   - Meledak
+  - EndBoss
+  - Trigger
   layers:
   - Default
   - TransparentFX

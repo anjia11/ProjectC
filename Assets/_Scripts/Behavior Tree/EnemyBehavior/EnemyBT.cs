@@ -8,14 +8,14 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
 {
     public class EnemyBT : Enemy
     {
-        public enum State
-        {
-            Idle, Working
-        }
+        // public enum State
+        // {
+        //     Idle, Working
+        // }
         protected int moveDir;
 
         
-        [SerializeField]private State state = State.Working;
+        //[SerializeField]private State state = State.Working;
 
         private NodeStatus _status = NodeStatus.Running;
         
@@ -147,7 +147,7 @@ namespace _Scripts.Behavior_Tree.EnemyBehavior
         protected bool IsPlayerInAreaAttack()
         {
             var distanceToPlayer = Vector3.Distance(PlayerManager.instance._player.transform.position, transform.position);
-            if (distanceToPlayer < attackDistance)
+            if (distanceToPlayer <= attackDistance)
             {
                 return true;
             }

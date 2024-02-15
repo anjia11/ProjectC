@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f21a5136a8fa6c741ac6d25313a39406
   - enabled: 1
+    path: Assets/Scenes/PrologCutscene.unity
+    guid: 259b52c138504354aa09ca80e865e475
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: b622f8af7d799044a9adaa0aeb2667b1
+  - enabled: 0
+    path: Assets/Scenes/Level 1.unity
+    guid: 398513e3da7b7b843bfb11f8fd8ff95e
+  - enabled: 0
+    path: Assets/Scenes/Level 2.unity
+    guid: a8c581a1a9c4e1041a29d7d06021f5dd
+  - enabled: 0
+    path: Assets/Scenes/Level 3.unity
+    guid: 57d694b0657d7554aac9baad9267809f
   m_configObjects: {}
